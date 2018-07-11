@@ -12,20 +12,20 @@ The application can be found at [http://13.211.150.108.xip.io/](http://13.211.15
 
 Here are the steps I took to secure the server and get my application running.
 
-[Upgrading software](#upgrade)
-[Creating new users and configuring ssh](#newuser)
-[Setting the time zone](#time)
-[Setting up a firewall](#firewall)
-[Installing and configuring fail2ban](#fail2ban)
-[Install and configure PostgreSQL](#PostgreSQL)
-[Install git, clone and setup your Catalog App project.](#git)
-[Configure and Enable a New Virtual Host](#host)
-[Create the .wsgi File](#wsgi)
-[Restart Apache](#restart)
-[Setting up Lynx to monitor the application](#lynx)
-[Setting up automatic security updates](#auto)
-[Sources](#sources)
-[Contact](#contact)
+- [Upgrading software](#upgrade)
+- [Creating new users and configuring ssh](#newuser)
+- [Setting the time zone](#time)
+- [Setting up a firewall](#firewall)
+- [Installing and configuring fail2ban](#fail2ban)
+- [Install and configure PostgreSQL](#PostgreSQL)
+- [Install git, clone and setup your Catalog App project.](#git)
+- [Configure and Enable a New Virtual Host](#host)
+- [Create the .wsgi File](#wsgi)
+- [Restart Apache](#restart)
+- [Setting up Lynx to monitor the application](#lynx)
+- [Setting up automatic security updates](#auto)
+- [Sources](#sources)
+- [Contact](#contact)
 
 #####<a name="upgrade">Upgrading software</a>
 
