@@ -27,7 +27,7 @@ Here are the steps I took to secure the server and get my application running.
 - [Sources](#sources)
 - [Contact](#contact)
 
-#####<a name="upgrade">Upgrading software</a>
+##### <a name="upgrade">Upgrading software</a>
 
 After logging in to the server, the first thing I did was update all installed software packages:
 
@@ -36,7 +36,7 @@ $ apt-get update
 $ apt-get upgrade
 ```
 
-#####<a name="newuser">Creating new users and configuring ssh</a>
+##### <a name="newuser">Creating new users and configuring ssh</a>
 
 My next order of business was to create the appropriate users, give them sudo privileges and allow them to ssh into the server. First, I added the new users:
 
@@ -77,7 +77,7 @@ $ sudo service sshd restart
 
 After this I exited the root login session and logged back into the server with my new user account and public key.
 
-#####<a name="time">Setting the time zone</a>
+##### <a name="time">Setting the time zone</a>
 
 To set the time zone I ran the command:
 
@@ -87,7 +87,7 @@ $ sudo dpkg-reconfigure tzdata
 
 This opened a dialog. From the menu I selected 'None of the above' and then 'UTC.'
 
-#####<a name="firewall">Setting up a firewall</a>
+##### <a name="firewall">Setting up a firewall</a>
 
 Next I configured a firewall to only allow incoming connections on ports 80, 123 and 2200:
 
@@ -100,7 +100,7 @@ $ sudo ufw allow ntp
 $ sudo ufw enable
 ```
 
-#####<a name="fail2ban">Installing and configuring fail2ban</a>
+##### <a name="fail2ban">Installing and configuring fail2ban</a>
 
 To protect against brute force attacks I installed fail2ban, a software package that blocks ip addresses with multiple failed login attempts within a certain amount of time. I installed fail2ban from apt-get:
 
@@ -234,7 +234,7 @@ After which I could view the reports with the command:
 $ lynx http://localhost/server-status
 ```
 
-#####<a name="auto">Setting up automatic security updates</a>
+##### <a name="auto">Setting up automatic security updates</a>
 
 I enabled automatic security upgrades with the following commands
 
