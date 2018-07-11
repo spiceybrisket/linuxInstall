@@ -256,7 +256,7 @@ $ lynx http://localhost/server-status
 
 [Back to the Top](#top)
 
-#### <a name="auto">Setting up automatic security updates</a>
+### <a name="auto">Setting up automatic security updates</a>
 
 I enabled automatic security upgrades with the following commands
 
