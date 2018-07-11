@@ -8,7 +8,7 @@ For the final Udacity nanodegree project, I configured a linux Amazon lightsail 
 The server can be found on [13.211.150.108](13.211.150.108)
 The application can be found at [http://13.211.150.108.xip.io/](http://13.211.150.108.xip.io/).
 
-### Configuration details
+### <a name="top">Configuration details</a>
 
 Here are the steps I took to secure the server and get my application running.
 
@@ -44,6 +44,8 @@ My next order of business was to create the appropriate users, give them sudo pr
 $ adduser {newuser}
 ```
 
+[Back to the Top](#top)
+
 Then for each new user I created a file in the `sudoers.d` directory: `$ sudo nano /etc/sudoers.d/{newuser}` with the following text:
 
 ```
@@ -75,6 +77,8 @@ I then restarted the SSH service:
 $ sudo service sshd restart
 ```
 
+[Back to the Top](#top)
+
 After this I exited the root login session and logged back into the server with my new user account and public key.
 
 #### <a name="time">Setting the time zone</a>
@@ -84,6 +88,8 @@ To set the time zone I ran the command:
 ```
 $ sudo dpkg-reconfigure tzdata
 ```
+
+[Back to the Top](#top)
 
 This opened a dialog. From the menu I selected 'None of the above' and then 'UTC.'
 
@@ -99,6 +105,8 @@ $ sudo ufw allow www
 $ sudo ufw allow ntp
 $ sudo ufw enable
 ```
+
+[Back to the Top](#top)
 
 #### <a name="fail2ban">Installing and configuring fail2ban</a>
 
@@ -119,6 +127,8 @@ Then, within the new `jail.local` file I changed the ssh port from 22 to 2200, s
 ```
 $ sudo service fail2ban restart
 ```
+
+[Back to the Top](#top)
 
 ### <a name="PostgreSQL">Install and configure PostgreSQL</a>
 
@@ -148,9 +158,11 @@ $ sudo service fail2ban restart
 8.  Quit postgreSQL `postgres=# \q`
 9.  Exit from user "postgres"
 
-    ```
-    exit
-    ```
+        ```
+        exit
+        ```
+
+    [Back to the Top](#top)
 
 ### <a name="git">Install git, clone and setup your Catalog App project.</a>
 
@@ -166,6 +178,8 @@ $ sudo service fail2ban restart
 10. Use pip to install dependencies `sudo pip install -r requirements.txt`
 11. Install psycopg2 `sudo apt-get -qqy install postgresql python-psycopg2`
 12. Create database schema `sudo python database_setup.py`
+
+[Back to the Top](#top)
 
 ### <a name="host">Configure and Enable a New Virtual Host</a>
 
@@ -194,6 +208,8 @@ $ sudo service fail2ban restart
 
 3.  Enable the virtual host with the following command: `sudo a2ensite catalog`
 
+[Back to the Top](#top)
+
 ### <a name="wsgi">Create the .wsgi File</a>
 
 1.  Create the .wsgi File under /var/www/catalog:
@@ -205,20 +221,24 @@ $ sudo service fail2ban restart
 
 2.  Add the following lines of code to the catalog.wsgi file:
 
-    ```
-    #!/usr/bin/python
-    import sys
-    import logging
-    logging.basicConfig(stream=sys.stderr)
-    sys.path.insert(0,"/var/www/catalog/")
+        ```
+        #!/usr/bin/python
+        import sys
+        import logging
+        logging.basicConfig(stream=sys.stderr)
+        sys.path.insert(0,"/var/www/catalog/")
 
-    from catalog import app as application
-    application.secret_key = 'Add your secret key'
-    ```
+        from catalog import app as application
+        application.secret_key = 'Add your secret key'
+        ```
+
+    [Back to the Top](#top)
 
 ### <a name="restart">Restart Apache</a>
 
 1.  Restart Apache `sudo service apache2 restart`
+
+[Back to the Top](#top)
 
 ### <a name="lynx">Setting up Lynx to monitor the application</a>
 
@@ -234,6 +254,8 @@ After which I could view the reports with the command:
 $ lynx http://localhost/server-status
 ```
 
+[Back to the Top](#top)
+
 #### <a name="auto">Setting up automatic security updates</a>
 
 I enabled automatic security upgrades with the following commands
@@ -244,6 +266,8 @@ sudo dpkg-reconfigure unattended-upgrades
 ```
 
 and selected yes in the dialog that appeared.
+
+[Back to the Top](#top)
 
 ### <a name="sources">Sources</a>
 
@@ -261,3 +285,5 @@ In addition to the Configuring Linux Web Servers Udacity course, I relied on sev
 ### <a name="contact">Contact</a>
 
 For comments or questions, reach me at [adamdidthis@hotmail.com](mailto:adamdidthis@hotmail.com)
+
+[Back to the Top](#top)
