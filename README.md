@@ -13,6 +13,19 @@ The application can be found at [http://13.211.150.108.xip.io/](http://13.211.15
 Here are the steps I took to secure the server and get my application running.
 
 [Upgrading software](#upgrade)
+[Creating new users and configuring ssh](#newuser)
+[Setting the time zone](#time)
+[Setting up a firewall](#firewall)
+[Installing and configuring fail2ban](#fail2ban)
+[Install and configure PostgreSQL](#PostgreSQL)
+[Install git, clone and setup your Catalog App project.](#git)
+[Configure and Enable a New Virtual Host](#host)
+[Create the .wsgi File](#wsgi)
+[Restart Apache](#restart)
+[Setting up Lynx to monitor the application](#lynx)
+[Setting up automatic security updates](#auto)
+[Sources](#sources)
+[Contact](#contact)
 
 #####<a name="upgrade">Upgrading software</a>
 
@@ -23,7 +36,7 @@ $ apt-get update
 $ apt-get upgrade
 ```
 
-#####Creating new users and configuring ssh
+#####<a name="newuser">Creating new users and configuring ssh</a>
 
 My next order of business was to create the appropriate users, give them sudo privileges and allow them to ssh into the server. First, I added the new users:
 
@@ -64,7 +77,7 @@ $ sudo service sshd restart
 
 After this I exited the root login session and logged back into the server with my new user account and public key.
 
-#####Setting the time zone
+#####<a name="time">Setting the time zone</a>
 
 To set the time zone I ran the command:
 
@@ -74,7 +87,7 @@ $ sudo dpkg-reconfigure tzdata
 
 This opened a dialog. From the menu I selected 'None of the above' and then 'UTC.'
 
-#####Setting up a firewall
+#####<a name="firewall">Setting up a firewall</a>
 
 Next I configured a firewall to only allow incoming connections on ports 80, 123 and 2200:
 
@@ -87,7 +100,7 @@ $ sudo ufw allow ntp
 $ sudo ufw enable
 ```
 
-##### Installing and configuring fail2ban
+#####<a name="fail2ban">Installing and configuring fail2ban</a>
 
 To protect against brute force attacks I installed fail2ban, a software package that blocks ip addresses with multiple failed login attempts within a certain amount of time. I installed fail2ban from apt-get:
 
@@ -107,7 +120,7 @@ Then, within the new `jail.local` file I changed the ssh port from 22 to 2200, s
 $ sudo service fail2ban restart
 ```
 
-## Install and configure PostgreSQL
+####<a name="PostgreSQL">Install and configure PostgreSQL</a>
 
 1.  Install PostgreSQL `sudo apt-get install postgresql`
 2.  Check if no remote connections are allowed `sudo nano /etc/postgresql/9.5/main/pg_hba.conf`
@@ -139,7 +152,7 @@ $ sudo service fail2ban restart
     exit
     ```
 
-## Install git, clone and setup your Catalog App project.
+####<a name="git">Install git, clone and setup your Catalog App project.</a>
 
 1.  Install Git using `sudo apt-get install git`
 2.  Use `cd /var/www` to move to the /var/www directory
@@ -154,7 +167,7 @@ $ sudo service fail2ban restart
 11. Install psycopg2 `sudo apt-get -qqy install postgresql python-psycopg2`
 12. Create database schema `sudo python database_setup.py`
 
-## Configure and Enable a New Virtual Host
+####<a name="host">Configure and Enable a New Virtual Host</a>
 
 1.  Create catalog.conf to edit: `sudo nano /etc/apache2/sites-available/catalog.conf`
 2.  Add the following lines of code to the file to configure the virtual host.
@@ -181,7 +194,7 @@ $ sudo service fail2ban restart
 
 3.  Enable the virtual host with the following command: `sudo a2ensite catalog`
 
-## Create the .wsgi File
+####<a name="wsgi">Create the .wsgi File</a>
 
 1.  Create the .wsgi File under /var/www/catalog:
 
@@ -203,9 +216,11 @@ $ sudo service fail2ban restart
     application.secret_key = 'Add your secret key'
     ```
 
-## Restart Apache
+####<a name="restart">Restart Apache</a>
 
 1.  Restart Apache `sudo service apache2 restart`
+
+####<a name="lynx">Setting up Lynx to monitor the application</a>
 
 In order to view mod_status' reports I installed lynx, a terminal-based web browser:
 
@@ -219,7 +234,7 @@ After which I could view the reports with the command:
 $ lynx http://localhost/server-status
 ```
 
-#####Setting up automatic security updates
+#####<a name="auto">Setting up automatic security updates</a>
 
 I enabled automatic security upgrades with the following commands
 
@@ -230,7 +245,7 @@ sudo dpkg-reconfigure unattended-upgrades
 
 and selected yes in the dialog that appeared.
 
-### Sources
+####<a name="sources">Sources</a>
 
 In addition to the Configuring Linux Web Servers Udacity course, I relied on several third-party resources to complete this project. Here they are:
 
@@ -243,6 +258,6 @@ In addition to the Configuring Linux Web Servers Udacity course, I relied on sev
 - [Setting file permissions for apache](http://serverfault.com/questions/125865/finding-out-what-user-apache-is-running-as)
 - [Setting up automatic security updates on Ubuntu](http://askubuntu.com/questions/9/how-do-i-enable-automatic-updates)
 
-### Contact
+####<a name="contact">Contact</a>
 
 For comments or questions, reach me at [adamdidthis@hotmail.com](mailto:adamdidthis@hotmail.com)
