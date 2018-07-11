@@ -224,4 +224,4 @@ In addition to the Configuring Linux Web Servers Udacity course, I relied on sev
 
 ### Contact
 
-For comments or questions, reach me at [sam.a.greenlee@gmail.com](mailto:sam.a.greenlee@gmail.com)
+For comments or questions, reach me at [adamdidthis@hotmail.com](mailto:adamdidthis@hotmail.com)
